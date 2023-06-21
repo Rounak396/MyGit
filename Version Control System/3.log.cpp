@@ -10,8 +10,7 @@ namespace mygitlog{
     #include <errno.h>
     #include <time.h>
     #include <vector>
-    #include <map>
-
+    #include <map>l
     #include <fstream>
     #include <algorithm>
     #include <sys/stat.h>
@@ -109,6 +108,6 @@ namespace mygitlog{
        }
        return current_path;
     }
-    
+
 }
     
