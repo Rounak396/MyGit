@@ -3,6 +3,7 @@
         {
             "name": "Mac",
             "includePath": [
+                "\"${myDefaultIncludePath}\", \"/another/path\""
             ],
             "defines": [],
             "macFrameworkPath": [
