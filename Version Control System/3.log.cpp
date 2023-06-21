@@ -10,7 +10,7 @@ namespace mygitlog{
     #include <errno.h>
     #include <time.h>
     #include <vector>
-    #include <map>l
+    #include <map>
     #include <fstream>
     #include <algorithm>
     #include <sys/stat.h>
