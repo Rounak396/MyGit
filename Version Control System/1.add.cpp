@@ -1,5 +1,3 @@
-#include <map> // added map header
-
 namespace mygitadd{
     #include <iostream> 
     #include <fstream> // for file I/O
@@ -17,6 +15,7 @@ namespace mygitadd{
     #include <errno.h> // for error number. errno is defined by the ISO C standard to be a modifiable lvalue of type int, and must not be explicitly declared; errno may be a macro.
     #include <time.h> // for time
     #include <algorithm> // for sort
+    #include <map>      // for map
 
     using namespace std;
 
@@ -46,21 +45,71 @@ namespace mygitadd{
 
   int add_new(vector<string>& newf){
       for (int i=0; i<newf.size(); i++){
-        string filename= newf[i];
+          string filename= newf[i];
 
-        // copy the file from current working directory to cureent version.
-        string s= cwd;
-        string path_in= s + "/" + filename;
-        string sha = get_sha(path_in);
-        string path_out= mygit_path + version_no + "/" + filename;
+          // copy the file from current working directory to cureent version.
+          string s= cwd; 
+          string path_in= s + "/" + filename; // path_in is the path of the file in the current working directory, used for copying the file to the base folder.
+          string sha = get_sha(path_in);  
+          string path_out= mygit_path + version_no + "/" + filename; 
 
-        string copy_cmd = "cp ";
-        copy_cmd = copy_cmd + path_in + " ";
-        copy_cmd = copy_cmd + s + "/.mygit/base/" + filename;
-        system(copy_cmd.c_str()); //files copied from cwd to base folder
+          string copy_cmd = "cp ";  
+          copy_cmd = copy_cmd + path_in + " "; 
+          copy_cmd = copy_cmd + s + "/.mygit/base/" + filename;
+          system(copy_cmd.c_str()); //files copied from cwd to base folder
+
+
+
+          // copying the file from base folder to current version folder
+         
+          ifstream fin;  // input file stream. By this we can read from a file.
+          ofstream fout; // output file stream. By this we can write to a file.
+
+          fin.open(path_in, ios::in); // open the file in read mode
+          fout.open(path_out, ios::out); // open the file in write mode
+          string line;
+
+          while (fin){
+              getline(fin, line);
+              fout << line << endl;
+            }
+
+          fin.close();
+          fout.close();
+
+          map_index[filename] = sha;//add new file in the map
+          cout<<"adding new file: "<<filename<<endl;
         
-       } 
+        } 
+
+        string main_index_path = string(cwd) + "/.mygit/main_index.txt";
+    
+    ofstream main_index_file(main_index_path, ios::app);
+    for (int i = 0; i < newf.size(); i++)
+    {
+        string filename = newf[i];
+        
+        //in main index file add the new file name and the version no in which it came into existence
+        main_index_file << filename << " " << version_no << "\n";
+
     }
+
+    main_index_file.close();
+
+    //change the index file of current version accordingly
+    ofstream fout1;
+    fout1.open(index_path, ios::out);
+    for (auto it = map_index.begin(); it != map_index.end(); it++)
+    {
+        string line;
+        line += it->first + " " + it->second;
+        fout1 << line << endl;
+    }
+    fout1.close();
+
+    return 1;
+    }
+
 
 
 }
