@@ -69,4 +69,38 @@ namespace mygitmerge{
         return 0;
     }
 
+    string get_cwd(){
+        char cwd_path[PATH_MAX];
+        string current_path;
+        if(getcwd(cwd_path,PATH_MAX) != NULL){
+            current_path = cwd_path;
+        }
+        else{
+            perror("Unable to get current working directory");
+            exit (1);
+        }
+        return current_path;
+    }
+
+    vector<string> merge_get_files(string path){
+        vector<string> files;
+        DIR *dir;
+        struct dirent *ent;
+        if ((dir = opendir (path.c_str())) != NULL) {
+            /* print all the files and directories within directory */
+            while ((ent = readdir (dir)) != NULL) {
+                string file_name = ent->d_name;
+                if(file_name != "." && file_name != ".."){
+                    files.push_back(file_name);
+                }
+            }
+            closedir (dir);
+        } else {
+            /* could not open directory */
+            perror ("Unable to open directory");
+            exit (1);
+        }
+        return files;
+    
+
 }
