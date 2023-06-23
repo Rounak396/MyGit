@@ -58,3 +58,59 @@ Use the following command to delete a branch:
 ```bash
 mygit branch -d <branch-name>
 ```
+Use the following command to push the repository to a remote repository:
+```bash
+mygit push <remote-name> <branch-name>
+```
+Use the following command to pull the repository from a remote repository:
+```bash
+mygit pull <remote-name> <branch-name>
+```
+Use the following command to clone a repository from a remote repository:
+```bash
+mygit clone <remote-name> <branch-name>
+```
+Use the following command to view the remote repositories:
+```bash
+mygit remote -v
+```
+Use the following command to add a remote repository:
+```bash
+mygit remote add <remote-name> <remote-url>
+```
+Use the following command to remove a remote repository:
+```bash
+mygit remote remove <remote-name>
+```
+Use the following command to rename a remote repository:
+```bash
+mygit remote rename <remote-name> <new-remote-name>
+```
+Use the following command to view the branches:
+```bash
+mygit branch -a
+```
+Use the following command to view the tags:
+```bash
+mygit tag
+```
+Use the following command to create a tag:
+```bash
+mygit tag <tag-name>
+```
+Use the following command to delete a tag:
+```bash
+mygit tag -d <tag-name>
+```
+Use the following command to view the difference between two tags:
+```bash
+mygit diff <tag-name-1> <tag-name-2>
+```
+Use the following command to view the difference between a tag and a commit:
+```bash
+mygit diff <tag-name> <commit-id>
+```
+Use the following command to view the difference between a tag and a branch:
+```bash
+mygit diff <tag-name> <branch-name>
+```
