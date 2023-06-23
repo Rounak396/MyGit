@@ -83,24 +83,53 @@ namespace mygitmerge{
     }
 
     vector<string> merge_get_files(string path){
-        vector<string> files;
-        DIR *dir;
-        struct dirent *ent;
-        if ((dir = opendir (path.c_str())) != NULL) {
-            /* print all the files and directories within directory */
-            while ((ent = readdir (dir)) != NULL) {
-                string file_name = ent->d_name;
-                if(file_name != "." && file_name != ".."){
-                    files.push_back(file_name);
+        struct dirent *pointerp;
+        DIR *dir = opendir(path.c_str());
+        if (dir == NULL)
+        {
+            perror("Unable to open directory");
+            exit(1);
+        }
+
+    vector<string> v;
+    while ((pointerp = readdir(dir)) != NULL)
+    {
+        
+        string file = pointerp->d_name;
+        string filepath = path + "/" + file;
+        if (file == "." || file == ".." || file == ".mygit" || file == "a.out" || file == ".vscode" || file == "mygit" || file=="status.hpp" || file=="add.hpp" || file=="commit.hpp" || file=="mygit.cpp" || file=="log.hpp" || file=="pull.hpp" || file=="push.hpp" || file=="merge.hpp" || file=="rollback.hpp" || file=="mygit" || file=="pull"|| file=="push")
+            {
+                continue;
+            }
+        else
+            {
+                v.push_back(file);
+            }
+    }
+    closedir(dir);
+    return v;
+
+    }
+    
+    
+
+    
+        string get_sha(string file_path){
+            string command = "sha1sum " + file_path;
+            char buffer[128];
+            string result = "";
+            FILE* pipe = popen(command.c_str(),"r");
+            if(!pipe){
+                cout << "Error in opening pipe" << endl;
+                exit(1);
+            }
+            while(!feof(pipe)){
+                if(fgets(buffer,128,pipe) != NULL){
+                    result += buffer;
                 }
             }
-            closedir (dir);
-        } else {
-            /* could not open directory */
-            perror ("Unable to open directory");
-            exit (1);
+            pclose(pipe);
+            return result.substr(0,40);
         }
-        return files;
-    
 
 }
