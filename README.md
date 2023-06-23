@@ -70,6 +70,15 @@ Use the following command to clone a repository from a remote repository:
 ```bash
 mygit clone <remote-name> <branch-name>
 ```
+Use the following commands to configure the username and email:
+```bash
+mygit config --global user.name <username>
+mygit config --global user.email <email>
+```
+Use the following command to merge two commits:
+```bash
+mygit rebase <commit-id-1> <commit-id-2>
+```
 Use the following command to view the remote repositories:
 ```bash
 mygit remote -v
@@ -113,4 +122,8 @@ mygit diff <tag-name> <commit-id>
 Use the following command to view the difference between a tag and a branch:
 ```bash
 mygit diff <tag-name> <branch-name>
+```
+Use the following command for rollback:
+```bash
+mygit reset --hard <commit-id>
 ```
