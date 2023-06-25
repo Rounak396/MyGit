@@ -91,4 +91,3 @@ namespace mygitpush{
         }
     }
 }
-// ... to this snippet from Version Control System/6.push.cpp:
