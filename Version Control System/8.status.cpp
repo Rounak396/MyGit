@@ -20,6 +20,7 @@ namespace mygitstatus{
 
     using namespace std;
 
+    string get_sha(string);
     
 
 }
