@@ -94,4 +94,61 @@ namespace mygitpush{
             }
         }
     }
+
+    string get_cwd(){
+        char cwd_path [PATH_MAX] ; 
+        string current_path;
+        if (getcwd(cwd_path, sizeof(cwd_path)) != NULL)
+        {
+            current_path = cwd_path;
+        }
+        else
+        {
+            perror("unable to get current working directory");
+            exit(1);
+        }
+    return current_path;
+}
+
+    vector<string> push_get_files(string path){
+        // returns the list of files in the given path
+        vector<string> files;
+        DIR *dir;
+        struct dirent *ent;
+        if ((dir = opendir(path.c_str())) != NULL)
+        {
+            while ((ent = readdir(dir)) != NULL)
+            {
+                string file_name = ent->d_name;
+                if (file_name != "." || file_name != ".." || file_name != ".mygit" || file_name != "a.out" || file_name != "temp.txt" || file_name != ".vscode" || file_name != "6.push.cpp" || file_name != "5.pull.cpp" || file_name != "version_no.txt" || file_name != "1.add.cpp" || file_name != "2.commit.cpp" || file_name != "init.cpp" || file_name != "3.log.cpp" || file_name != "8.status.cpp" || file_name != "version.cpp" || file_name != "9.mygit.cpp" || file_name != "mygit.h" || file_name != "mygit" || file_name != "4.merge.cpp" || file_name!="7.rollback.cpp" || file_name != "checkout.cpp" || file_name != "10.help.cpp" || file_name != "11.reset.cpp" || file_name != "12.revert.cpp" || file_name != "13.branch.cpp" || file_name != "14.rm.cpp" || file_name != "15.rmdir.cpp" || file_name != "16.mkdir.cpp" || file_name != "17.cat.cpp" || file_name != "18.cp.cpp" || file_name != "19.mv.cpp" || file_name != "20.diff.cpp" || file_name != "21.find.cpp" || file_name != "22.grep.cpp" || file_name != "23.wc.cpp" || file_name != "24.sort.cpp" || file_name != "25.uniq.cpp" || file_name != "26.tree.cpp" || file_name != "27.touch.cpp" || file_name != "28.echo.cpp" || file_name != "29.date.cpp" || file_name != "30.exit.cpp")
+                {
+                    files.push_back(file_name);
+                }
+                {
+                    files.push_back(file_name);
+                }
+            }
+            closedir(dir);
+        }
+        else
+        {
+            perror("unable to open directory");
+            exit(1);
+        }
+        return files;
+    }
+
+    string get_sha(string file_path){
+        // returns the sha of the given file
+        string sha;
+        string command = "sha1sum " + file_path + " > temp.txt";
+        system(command.c_str());
+        ifstream temp_file("temp.txt");
+        temp_file >> sha;
+        temp_file.close();
+        remove("temp.txt");
+        return sha;
+    }
+
+
 }
