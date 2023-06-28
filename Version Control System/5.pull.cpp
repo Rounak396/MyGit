@@ -31,7 +31,7 @@ namespace mygitpull{
         // get the current working directory
         string cwd_path = get_cwd();
         string my_git_path = cwd_path ;
-        my_git_path += "/.mygit";
+        my_git_path += "/.mygit/";
 
         // retrieving version number
         string version_no="";

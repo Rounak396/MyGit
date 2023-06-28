@@ -45,11 +45,15 @@ namespace mygitpush{
         string src_path = cwd_path;
         string des_path = my_git_path + "/push";
 
-        cout << "copying all files from " << src_path << endl;
+        cout << "copying all files from " << src_path <<"to "<< des_path<< endl;
         vector<string> files = push_get_files(src_path);
 
         // creating push folder
-        if (mkdir(des_path.c_str(), 0777) == -1 && errno != EEXIST)
+        if (mkdir(des_path.c_str(), 0777) == -1 && errno != EEXIST) // des_path.c_str() converts the destination path from string to char*
+                                                                    // 0777 is the permission for the folder
+                                                                    // 1. mkdir(des_path.c_str(), 0777) == -1 means that the directory is not created
+                                                                    // 2. errno != EEXIST means that the directory doesn't exist
+                                                                    // 3. The code is executed when the directory doesn't exist and the directory is not created */
         {
             cerr << "unable to make push directory " << strerror(errno) << endl;
             return 0;
