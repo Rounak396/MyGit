@@ -87,6 +87,20 @@ namespace mygitstatus{
         return 1;
     }
 
-    
+    string get_cwd()
+    {
+        char cwd_path[PATH_MAX];
+        string current_path;
+        if (getcwd(cwd_path, sizeof(cwd_path)) != NULL)
+        {
+            current_path = cwd_path;
+        }
+        else
+        {
+            perror("unable to get current working directory");
+            exit(1);
+        }
+        return current_path;
+    }
 
 }
