@@ -204,15 +204,15 @@ namespace mygitrollback{
         while ((pointerp = readdir(dir)) != NULL)
         {
             
-            string file = pointerp->d_name;
-            if (file == "." || file == ".." || file == ".mygit" || file == "a.out" || file == ".vscode" || file=="mygit" || file=="status.hpp" || file=="add.hpp" || file=="commit.hpp" || file=="mygit.cpp" || file=="log.hpp" || file=="pull.hpp" || file=="push.hpp" || file=="merge.hpp" || file=="rollback.hpp" || file=="mygit" || file=="pull" || file=="push" )
+            string file_name = pointerp->d_name;
+            if (file_name == "." || file_name == ".." || file_name == ".mygit" || file_name == "a.out" || file_name == ".vscode" || file_name=="mygit" || file_name=="1.add.cpp" || file_name=="2.commit.cpp" || file_name=="3.log.cpp" || file_name=="4.merge.cpp" || file_name=="5.pull.cpp" || file_name=="6.push.cpp" || file_name=="7.rollback.cpp" ||  file_name=="8.status.hpp" || file_name=="9.mygit.cpp" || file_name=="mygit" || file_name=="pull" || file_name=="push" )
             {
                 continue;
             }
             else
-        {
-            v.push_back(file);
-        }
+            {
+                v.push_back(file_name);
+            }
         }
         closedir(dir);
         return v;
