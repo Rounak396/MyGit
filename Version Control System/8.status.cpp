@@ -103,4 +103,77 @@ namespace mygitstatus{
         return current_path;
     }
 
+    string get_sha(string file_name)
+    {
+        string s = "sha1sum " + file_name + " > temp.txt";
+
+        char arr[255];
+        strcpy(arr, s.c_str()); //store string s in char array
+        system(arr);            //sha calculation
+
+        FILE *filepointer = fopen("temp.txt", "r+"); //open temporary file to read the sha
+        char aux[100];
+        fread(aux, sizeof(char), 100, filepointer); //reading in sha in aux array
+        string input = aux;
+        stringstream ss(input);
+        string sha;
+        ss >> sha;
+        fclose(filepointer);
+
+        remove("temp.txt"); //delete temp.txt file
+
+        return sha;
+    }
+
+    vector<string> get_files(string cwd_path)
+    {
+        vector<string> files;
+        DIR *dir;
+        struct dirent *ent;
+        if ((dir = opendir(cwd_path.c_str())) != NULL)
+        {
+            while ((ent = readdir(dir)) != NULL)
+            {
+                string file_name = ent->d_name;
+                if (file_name == "." || file_name == ".." || file_name == ".mygit" || file_name == "a.out" || file_name == ".vscode" || file_name=="mygit" || file_name=="1.add.cpp" || file_name=="2.commit.cpp" || file_name=="3.log.cpp" || file_name=="4.merge.cpp" || file_name=="5.pull.cpp" || file_name=="6.push.cpp" || file_name=="7.rollback.cpp" ||  file_name=="8.status.hpp" || file_name=="9.mygit.cpp" || file_name=="mygit" || file_name=="pull" || file_name=="push" )
+                {
+                    files.push_back(file_name);
+                }
+            }
+            closedir(dir);
+        }
+        else
+        {
+            perror("unable to open directory");
+            exit(1);
+        }
+        return files;
+    }
+
+    map<string, string> get_map(string path) //make map from index file given the path of index.txt
+    {
+        map<string, string> index_map;
+        fstream f(path, std::ios_base::in);
+        if (f.is_open())
+        {
+            string line;
+            while (getline(f, line))
+            {
+                stringstream ss(line);
+                string filename = "";
+                string sha = "";
+                ss >> filename;
+                ss >> sha;
+                index_map[filename] = sha; //filename:sha
+            }
+        }
+        else
+        {
+            perror("unable to open file in get_map function");
+            exit(1);
+        }
+        return index_map;
+    }
+
+    
 }
