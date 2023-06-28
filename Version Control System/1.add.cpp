@@ -84,30 +84,30 @@ namespace mygitadd{
 
         string main_index_path = string(cwd) + "/.mygit/main_index.txt";
     
-    ofstream main_index_file(main_index_path, ios::app);
-    for (int i = 0; i < newf.size(); i++)
-    {
-        string filename = newf[i];
+        ofstream main_index_file(main_index_path, ios::app);
+        for (int i = 0; i < newf.size(); i++)
+        {
+            string filename = newf[i];
         
-        //in main index file add the new file name and the version no in which it came into existence
-        main_index_file << filename << " " << version_no << "\n";
+            //in main index file add the new file name and the version no in which it came into existence
+            main_index_file << filename << " " << version_no << "\n";
 
-    }
+        }
 
-    main_index_file.close();
+        main_index_file.close();
 
-    //change the index file of current version accordingly
-    ofstream fout1;
-    fout1.open(index_path, ios::out);
-    for (auto it = map_index.begin(); it != map_index.end(); it++)
-    {
-        string line;
-        line += it->first + " " + it->second;
-        fout1 << line << endl;
-    }
-    fout1.close();
+        //change the index file of current version accordingly
+        ofstream fout1;
+        fout1.open(index_path, ios::out);
+        for (auto it = map_index.begin(); it != map_index.end(); it++)
+        {
+            string line;
+            line += it->first + " " + it->second;
+            fout1 << line << endl;
+        }
+        fout1.close();
 
-    return 1;
+        return 1;
     }
 
 
