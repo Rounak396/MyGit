@@ -382,4 +382,23 @@ namespace mygitadd{
 }
 
 
+string get_map()
+{
+    ifstream fin;
+    fin.open(".mygit/index.txt", ios::in);
+    if (!fin)
+    {
+        cout << "Error in opening file";
+        return 0;
+    }
+
+    string file_name;
+    string sha;
+    while (fin >> file_name >> sha)
+    {
+        map_index[file_name] = sha;
+    }
+    fin.close();
+    return 1;
 }
+};
