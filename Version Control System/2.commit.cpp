@@ -116,7 +116,7 @@ namespace mygitCommit{
                 while ((ent = readdir(dir)) != NULL)
                 {
                     string file_name = string(ent->d_name);
-                    if (file_name != "." && file_name != ".." && file_name != ".mygit" && file_name != "index.txt" && file_name != "version_no.txt" && file_name != "n.out" && file_name != ".vscode" && file_name!="mygit" && file_name!="1.add.cpp" && file_name!="2.commit.cpp" && file_name!="3.log.cpp" && file_name!="4.merge.cpp" && file_name!="5.pull.cpp" && file_name!="6.push.cpp" && file_name!="7.rollback.cpp" && file_name!="8.status.cpp" && file_name!="9.mygit.cpp" && file_name!="pull" && file_name!="push")
+                    if (file_name == "." || file_name == ".." || file_name == ".mygit" || file_name == "a.out" || file_name == ".vscode" || file_name=="mygit" || file_name=="1.add.cpp" || file_name=="2.commit.cpp" || file_name=="3.log.cpp" || file_name=="4.merge.cpp" || file_name=="5.pull.cpp" || file_name=="6.push.cpp" || file_name=="7.rollback.cpp" ||  file_name=="8.status.hpp" || file_name=="9.mygit.cpp" || file_name=="mygit" || file_name=="pull" || file_name=="push" )
                     {
                         files.push_back(file_name);
                     }
