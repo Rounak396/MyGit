@@ -251,6 +251,18 @@ namespace mygitadd{
                 cout << modified_files[i] << endl;
             }
         }
+
+        // display all the deleted files
+        if(deleted_files.size()==0){
+            cout<<"No files to delete"<<endl;
+        }
+        else if(deleted_files.size()!=0){
+            cout<<"Deleted files: "<<endl;
+            for (int i = 0; i < deleted_files.size(); i++)
+            {
+                cout << deleted_files[i] << endl;
+            }
+        }
     }
 
 
