@@ -110,6 +110,10 @@ namespace mygitadd{
         return 1;
     }
 
+    int add_modified(vector<string> modifiedf){
+        
+    }
+
 
 
 }
