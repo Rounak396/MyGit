@@ -357,48 +357,55 @@ namespace mygitadd{
 
 
     vector<string> get_files(string path)
-{
-    struct dirent *pointerp;
-    DIR *dir = opendir(path.c_str()); //pointer to the directory whose files we wish to copy
-    if (dir == NULL)
     {
-        cout << "Failed to open the Directory";
-        exit(EXIT_FAILURE);
-    }
-
-    vector<string> v; //vector to store the filenames
-    while ((pointerp = readdir(dir)) != NULL) //readdir(dir) will point to the files one by one
-    {
-        //cout << pointerp->d_name << endl;
-        string file_name = pointerp->d_name;
-        if (file_name == "." || file_name == ".." || file_name == ".mygit" || file_name == "a.out" || file_name == ".vscode" || file_name=="mygit" || file_name=="1.add.cpp" || file_name=="2.commit.cpp" || file_name=="3.log.cpp" || file_name=="4.merge.cpp" || file_name=="5.pull.cpp" || file_name=="6.push.cpp" || file_name=="7.rollback.cpp" ||  file_name=="8.status.hpp" || file_name=="9.mygit.cpp" || file_name=="mygit" || file_name=="pull" || file_name=="push" )
+        struct dirent *pointerp;
+        DIR *dir = opendir(path.c_str()); //pointer to the directory whose files we wish to copy
+        if (dir == NULL)
         {
-            v.push_back(file_name); //push the file in vector
+            cout << "Failed to open the Directory";
+            exit(EXIT_FAILURE);
         }
-        
+    
+        vector<string> v; //vector to store the filenames
+        while ((pointerp = readdir(dir)) != NULL) //readdir(dir) will point to the files one by one
+        {
+            //cout << pointerp->d_name << endl;
+            string file_name = pointerp->d_name;
+            if (file_name == "." || file_name == ".." || file_name == ".mygit" || file_name == "a.out" || file_name == ".vscode" || file_name=="mygit" || file_name=="1.add.cpp" || file_name=="2.commit.cpp" || file_name=="3.log.cpp" || file_name=="4.merge.cpp" || file_name=="5.pull.cpp" || file_name=="6.push.cpp" || file_name=="7.rollback.cpp" ||  file_name=="8.status.hpp" || file_name=="9.mygit.cpp" || file_name=="mygit" || file_name=="pull" || file_name=="push" )
+            {
+                v.push_back(file_name); //push the file in vector
+            }
+            
+        }
+        closedir(dir); //close the directory 
+        return v; //return the vector
     }
-    closedir(dir); //close the directory 
-    return v; //return the vector
-}
 
 
-string get_map()
+    map<string, string> get_map(string path)//make map from index file given the path of index.txt
 {
-    ifstream fin;
-    fin.open(".mygit/index.txt", ios::in);
-    if (!fin)
+    map<string, string> index_map;
+    fstream f(path, std::ios_base::in);
+    if (f.is_open())
     {
-        cout << "Error in opening file";
-        return 0;
+        string line;
+        while (getline(f, line)) 
+        {
+            stringstream ss(line); 
+            string filename = "";
+            string sha = "";
+            ss >> filename;
+            ss >> sha;
+            index_map[filename] = sha;//filename:sha
+        }
     }
-
-    string file_name;
-    string sha;
-    while (fin >> file_name >> sha)
+    else        
     {
-        map_index[file_name] = sha;
+        perror("unable to open file in get_map function");
+        exit(1);
     }
-    fin.close();
-    return 1;
+    return index_map;
 }
+
+
 };
