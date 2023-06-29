@@ -20,6 +20,7 @@ namespace mygitadd{
 
     using namespace std;
 
+
    char cwd[PATH_MAX]; // current working directory. PATH_MAX is the maximum number of bytes in a pathname, including the terminating null character.
    string mygit_path; // mygit path. mygit is the name of the version control system.
    string version_no_file_path; // version no file path. version no file is the file that stores the version number. version_no_file_path= mygit_path + "/version_no"
@@ -27,6 +28,7 @@ namespace mygitadd{
    string index_path; // index path. index is the file that stores the file names and their hashes. index_path= mygit_path + "/index"
    string base_path; // base path. base is the directory that stores the files. base_path= mygit_path + "/base"
    int n;
+
 
    vector<string> files; // files. files is the vector that stores the file names.
    vector<string> hashes; // hashes. hashes is the vector that stores the hashes of the files.
@@ -113,6 +115,7 @@ namespace mygitadd{
 
 
 
+
     int add_modified(vector<string> modifiedf){
         for (int i = 0; i < modifiedf.size(); i++)
         {
@@ -153,6 +156,7 @@ namespace mygitadd{
 
 
 
+
     int add_deleted(vector<string> deletedf)
     {   
         //path from where the file is to be deleted i.e the current version
@@ -180,6 +184,7 @@ namespace mygitadd{
         
         return 1;
     }
+
 
 
 
@@ -333,6 +338,7 @@ namespace mygitadd{
 
 
 
+
     string get_sha(string file_name)
     {
         string s = "sha1sum " + file_name + " > temp.txt";
@@ -354,6 +360,8 @@ namespace mygitadd{
     
         return sha;
     }
+
+
 
 
     vector<string> get_files(string path)
@@ -382,30 +390,31 @@ namespace mygitadd{
     }
 
 
-    map<string, string> get_map(string path)//make map from index file given the path of index.txt
-{
-    map<string, string> index_map;
-    fstream f(path, std::ios_base::in);
-    if (f.is_open())
-    {
-        string line;
-        while (getline(f, line)) 
-        {
-            stringstream ss(line); 
-            string filename = "";
-            string sha = "";
-            ss >> filename;
-            ss >> sha;
-            index_map[filename] = sha;//filename:sha
-        }
-    }
-    else        
-    {
-        perror("unable to open file in get_map function");
-        exit(1);
-    }
-    return index_map;
-}
 
+
+    map<string, string> get_map(string path)//make map from index file given the path of index.txt
+    {
+        map<string, string> index_map;
+        fstream f(path, std::ios_base::in);
+        if (f.is_open())
+        {
+            string line;
+            while (getline(f, line)) 
+            {
+                stringstream ss(line); 
+                string filename = "";
+                string sha = "";
+                ss >> filename;
+                ss >> sha;
+                index_map[filename] = sha;//filename:sha
+            }
+        }
+        else        
+        {
+            perror("unable to open file in get_map function");
+            exit(1);
+        }
+        return index_map;
+    }
 
 };
