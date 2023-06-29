@@ -263,23 +263,59 @@ namespace mygitadd{
                 cout << deleted_files[i] << endl;
             }
         }
+        cout<<endl;
 
-        //add new files
-        if(new_files.size()!=0){
-            add_new(new_files);
+        //add the files to the current version
+        int new_processed =0;
+        int modified_processed =0;
+        int deleted_processed =0;
+
+        if (new_files.size()!=0)
+        {
+            new_processed = add_new(new_files);
+            if(new_processed) 
+            new_files.clear();
+            if(new_files.size()!=0){
+                cout<<"New files were not cleared"<<endl;
+            }
+            else{
+                cout<<"New files were cleared"<<endl;
+            }
         }
 
-        //add modified files
-        if(modified_files.size()!=0){
-            add_modified(modified_files);
+        if (modified_files.size()!=0)
+        {
+            modified_processed = add_modified(modified_files);
+            if(modified_processed) 
+            modified_files.clear();
+            if(modified_files.size()!=0){
+                cout<<"Modified files were not cleared"<<endl;
+            }
+            else{
+                cout<<"Modified files were cleared"<<endl;
+            }
         }
 
-        //add deleted files
-        if(deleted_files.size()!=0){
-            add_deleted(deleted_files);
+        if (deleted_files.size()!=0)
+        {
+            deleted_processed = add_deleted(deleted_files);
+            if(deleted_processed) 
+            deleted_files.clear();
+            if(deleted_files.size()!=0){
+                cout<<"Deleted files were not cleared"<<endl;
+            }
+            else{
+                cout<<"Deleted files were cleared"<<endl;
+            }
         }
 
-        
+        if(new_processed && modified_processed && deleted_processed){
+            cout<<"All files were added successfully"<<endl;
+        }
+        else{
+            cout<<"Some files were not added successfully"<<endl;
+        }
+            
     }
 
 
