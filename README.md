@@ -91,39 +91,3 @@ Use the following command to remove a remote repository:
 ```bash
 mygit remote remove <remote-name>
 ```
-Use the following command to rename a remote repository:
-```bash
-mygit remote rename <remote-name> <new-remote-name>
-```
-Use the following command to view the branches:
-```bash
-mygit branch -a
-```
-Use the following command to view the tags:
-```bash
-mygit tag
-```
-Use the following command to create a tag:
-```bash
-mygit tag <tag-name>
-```
-Use the following command to delete a tag:
-```bash
-mygit tag -d <tag-name>
-```
-Use the following command to view the difference between two tags:
-```bash
-mygit diff <tag-name-1> <tag-name-2>
-```
-Use the following command to view the difference between a tag and a commit:
-```bash
-mygit diff <tag-name> <commit-id>
-```
-Use the following command to view the difference between a tag and a branch:
-```bash
-mygit diff <tag-name> <branch-name>
-```
-Use the following command for rollback:
-```bash
-mygit reset --hard <commit-id>
-```
