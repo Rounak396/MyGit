@@ -110,8 +110,74 @@ namespace mygitadd{
         return 1;
     }
 
+
+
     int add_modified(vector<string> modifiedf){
+        for (int i = 0; i < modifiedf.size(); i++)
+        {
+            string filename = modifiedf[i];
+            string s = cwd;
+            string path_in = s + "/" + filename;
+            string path_out = mygit_path + version_no + "/" + filename;
+            ifstream fin(path_in);
+            ofstream fout(path_out);
+            //modify the file line by line
+            string line;
+            while (fin)
+            {
+                getline(fin, line);
+                fout << line << endl;
+            }
+            fin.close();
+            fout.close();
+
+            string sha = get_sha(filename);
+            map_index[filename] = sha;//change sha of the file in map
+            cout<<"adding modified file: "<<filename<<endl;
+        }
+
+        //change the index file of current version accordingly
+        ofstream fout1;
+        fout1.open(index_path, ios::out);
+        for (auto it = map_index.begin(); it != map_index.end(); it++)
+        {
+            string line;
+            line += it->first + " " + it->second;
+            fout1 << line << endl;
+        }
+        fout1.close();
+
+        return 1;
+    }
+
+
+
+    int add_deleted(vector<string> deletedf)
+    {   
+        //path from where the file is to be deleted i.e the current version
+        string delete_in = mygit_path + version_no + "/";
+    
+    
+        for (int i = 0; i < deletedf.size(); i++)
+        {
+            string str = delete_in + deletedf[i];
+            map_index.erase(deletedf[i]);//delete the file from map
+            remove(str.c_str());//delete file in current version
+            cout<<"deleting file: "<<deletedf[i]<<endl;
+        }
         
+        //change the index file  of current version accordingly
+        ofstream fout1;
+        fout1.open(index_path, ios::out);
+        for (auto it = map_index.begin(); it != map_index.end(); it++)
+        {
+            string line;
+            line += it->first + " " + it->second;
+            fout1 << line << endl;
+        }
+        fout1.close();
+        
+        return 1;
     }
 
 
