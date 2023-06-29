@@ -309,13 +309,23 @@ namespace mygitadd{
             }
         }
 
+        if (new_files.size() == 0 && modified_files.size() == 0 &&  deleted_files.size() == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+
+
         if(new_processed && modified_processed && deleted_processed){
             cout<<"All files were added successfully"<<endl;
         }
         else{
             cout<<"Some files were not added successfully"<<endl;
         }
-            
+
     }
 
 
