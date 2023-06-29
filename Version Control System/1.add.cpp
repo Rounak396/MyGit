@@ -356,28 +356,30 @@ namespace mygitadd{
     }
 
 
-
     vector<string> get_files(string path)
+{
+    struct dirent *pointerp;
+    DIR *dir = opendir(path.c_str()); //pointer to the directory whose files we wish to copy
+    if (dir == NULL)
     {
-        vector<string> files;
-        DIR *dir;
-        struct dirent *ent;
-        if ((dir = opendir(path.c_str())) != NULL)
-        {
-            while ((ent = readdir(dir)) != NULL)
-            {
-                if (ent->d_type == DT_REG)
-                {
-                    files.push_back(ent->d_name);
-                }
-            }
-            closedir(dir);
-        }
-        else
-        {
-            perror("Unable to open directory!");
-        }
-        return files;
+        cout << "Failed to open the Directory";
+        exit(EXIT_FAILURE);
     }
+
+    vector<string> v; //vector to store the filenames
+    while ((pointerp = readdir(dir)) != NULL) //readdir(dir) will point to the files one by one
+    {
+        //cout << pointerp->d_name << endl;
+        string file_name = pointerp->d_name;
+        if (file_name == "." || file_name == ".." || file_name == ".mygit" || file_name == "a.out" || file_name == ".vscode" || file_name=="mygit" || file_name=="1.add.cpp" || file_name=="2.commit.cpp" || file_name=="3.log.cpp" || file_name=="4.merge.cpp" || file_name=="5.pull.cpp" || file_name=="6.push.cpp" || file_name=="7.rollback.cpp" ||  file_name=="8.status.hpp" || file_name=="9.mygit.cpp" || file_name=="mygit" || file_name=="pull" || file_name=="push" )
+        {
+            v.push_back(file_name); //push the file in vector
+        }
+        
+    }
+    closedir(dir); //close the directory 
+    return v; //return the vector
+}
+
 
 }
