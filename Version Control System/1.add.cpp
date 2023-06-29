@@ -181,6 +181,8 @@ namespace mygitadd{
         return 1;
     }
 
+
+
     int add(){
         mygit_path=" ";
         if(getcwd(cwd, sizeof(cwd)) != NULL) {
@@ -329,6 +331,8 @@ namespace mygitadd{
 
     }
 
+
+
     string get_sha(string file_name)
     {
         string s = "sha1sum " + file_name + " > temp.txt";
@@ -353,5 +357,27 @@ namespace mygitadd{
 
 
 
+    vector<string> get_files(string path)
+    {
+        vector<string> files;
+        DIR *dir;
+        struct dirent *ent;
+        if ((dir = opendir(path.c_str())) != NULL)
+        {
+            while ((ent = readdir(dir)) != NULL)
+            {
+                if (ent->d_type == DT_REG)
+                {
+                    files.push_back(ent->d_name);
+                }
+            }
+            closedir(dir);
+        }
+        else
+        {
+            perror("Unable to open directory!");
+        }
+        return files;
+    }
 
 }
