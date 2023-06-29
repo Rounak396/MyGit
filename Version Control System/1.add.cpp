@@ -263,6 +263,23 @@ namespace mygitadd{
                 cout << deleted_files[i] << endl;
             }
         }
+
+        //add new files
+        if(new_files.size()!=0){
+            add_new(new_files);
+        }
+
+        //add modified files
+        if(modified_files.size()!=0){
+            add_modified(modified_files);
+        }
+
+        //add deleted files
+        if(deleted_files.size()!=0){
+            add_deleted(deleted_files);
+        }
+
+        
     }
 
 
