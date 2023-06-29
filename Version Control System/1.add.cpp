@@ -1,6 +1,7 @@
 namespace mygitadd{
     #include <iostream> 
     #include <fstream> // for file I/O
+    #include <sstream> // for string streams
     #include <string>  // for strings
     #include <vector>  // for vectors
     #include <dirent.h> // for directory
@@ -327,6 +328,29 @@ namespace mygitadd{
         }
 
     }
+
+    string get_sha(string file_name)
+    {
+        string s = "sha1sum " + file_name + " > temp.txt";
+
+        char arr[255];
+        strcpy(arr, s.c_str());//store string s in char array
+        system(arr);//sha calculation
+
+        FILE *filepointer = fopen("temp.txt", "r+");//open temp.txt file to read the sha
+        char aux[100];
+        fread(aux, sizeof(char), 100, filepointer);//reading in sha in aux array
+        string input = aux;
+        stringstream ss(input);
+        string sha;
+        ss >> sha;
+        fclose(filepointer);
+
+        remove("temp.txt");//delete temp.txt file
+    
+        return sha;
+    }
+
 
 
 
