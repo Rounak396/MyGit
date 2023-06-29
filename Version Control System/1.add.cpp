@@ -180,6 +180,79 @@ namespace mygitadd{
         return 1;
     }
 
+    int add(){
+        mygit_path=" ";
+        if(getcwd(cwd, sizeof(cwd)) != NULL) {
+            mygit_path= string(cwd);
+            mygit_path += "/.mygit/"; //myit path is the path to .mygit folder
+        }
+        else {
+            perror("Unable to get the current working directory!");
+            return 0;
+        }
+
+        //get files into a vector from the cwd
+        files = get_files(cwd);
+        n = files.size();
+
+        //goto the current version and read the version no
+        version_no_file_path = mygit_path + "version_no.txt";
+        fstream vcfile(version_no_file_path, std::ios_base::in);
+        vcfile >> version_no;
+    
+        //go to current version index file and create an map
+        index_path = mygit_path + version_no + "/" + "index.txt";
+        map_index = get_map();
+
+        // comparing for new , modified and deleted files
+        for (int i = 0; i < n; i++)
+        {
+            string sha = get_sha(files[i]);
+
+            if (map_index.find(files[i]) == map_index.end())//file exist in vector but not in map
+            {
+                new_files.push_back(files[i]);
+            }
+            else if (map_index[files[i]] != sha)//sha of same file name dosent match
+            {
+                modified_files.push_back(files[i]);
+            }
+        }
+
+        sort(files.begin(), files.end());
+        for (auto it = map_index.begin(); it != map_index.end(); it++)
+        {
+            if (find(files.begin(), files.end(), it->first) == files.end())//file exist in map but not in vector
+            {
+                deleted_files.push_back(it->first);
+            }
+        }
+
+        // display all the new files
+        if(files.size()==0){
+            cout<<"No files to add"<<endl;
+        }
+        else if(files.size()!=0){
+            cout<<"New files: "<<endl;
+            for (int i = 0; i < new_files.size(); i++)
+            {
+                cout << new_files[i] << endl;
+            }
+        }
+
+        // display all the modified files
+        if(modified_files.size()==0){
+            cout<<"No files to modify"<<endl;
+        }
+        else if(modified_files.size()!=0){
+            cout<<"Modified files: "<<endl;
+            for (int i = 0; i < modified_files.size(); i++)
+            {
+                cout << modified_files[i] << endl;
+            }
+        }
+    }
+
 
 
 }
