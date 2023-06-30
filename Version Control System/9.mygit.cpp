@@ -66,119 +66,113 @@ int main(int argc, char* argv[]){
         }
     }
 
-    else if (str == "add")
+    else if (str == "add"){
+        if (argc == 3)
         {
-            if (argc == 3)
-            {
-                string s = "File added successfully!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                add(argv[2]);
-                exit(EXIT_SUCCESS);
-            }
-            else
-            {
-                string s = "Error in adding file!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                exit(EXIT_SUCCESS);
-            }
+            string s = "File added successfully!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            add(argv[2]);
+            exit(EXIT_SUCCESS);
         }
+        else
+        {
+             string s = "Error in adding file!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            exit(EXIT_SUCCESS);
+        }
+    }
 
-    else if (str == "commit")
+    else if (str == "commit"){
+        if (argc == 3)
         {
-            if (argc == 3)
-            {
-                string s = "Commit successful!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                commit(argv[2]);
-                exit(EXIT_SUCCESS);
-            }
-            else
-            {
-                string s = "Error in commit!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                exit(EXIT_SUCCESS);
-            }
+            string s = "Commit successful!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            commit(argv[2]);
+            exit(EXIT_SUCCESS);
         }
+        else
+        {
+            string s = "Error in commit!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            exit(EXIT_SUCCESS);
+        }
+    }
 
-    else if (str == "log")
+    else if (str == "log"){
+        if (argc == 2)
         {
-            if (argc == 2)
-            {
-                string s = "Log successful!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                log();
-                exit(EXIT_SUCCESS);
-            }
-            else
-            {
-                string s = "Error in log!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                exit(EXIT_SUCCESS);
-            }
+            string s = "Log successful!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            log();
+            exit(EXIT_SUCCESS);
         }
+        else
+        {
+            string s = "Error in log!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            exit(EXIT_SUCCESS);
+        }
+    }
 
-    else if (str == "merge")
+    else if (str == "merge"){
+        if (argc == 3)
         {
-            if (argc == 3)
-            {
-                string s = "Merge successful!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                merge(argv[2]);
-                exit(EXIT_SUCCESS);
-            }
-            else
-            {
-                string s = "Error in merge!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                exit(EXIT_SUCCESS);
-            }
+            string s = "Merge successful!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            merge(argv[2]);
+            exit(EXIT_SUCCESS);
         }
+        else
+        {
+            string s = "Error in merge!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            exit(EXIT_SUCCESS);
+        }
+    }
 
-    else if (str == "pull")
+    else if (str == "pull"){
+        if (argc == 3)
         {
-            if (argc == 3)
-            {
-                string s = "Pull successful!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                pull(argv[2]);
-                exit(EXIT_SUCCESS);
-            }
-            else
-            {
-                string s = "Error in pull!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                exit(EXIT_SUCCESS);
-            }
+            string s = "Pull successful!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            pull(argv[2]);
+            exit(EXIT_SUCCESS);
         }
+        else
+        {
+            string s = "Error in pull!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            exit(EXIT_SUCCESS);
+        }
+    }
 
-    else if (str == "push")
+    else if (str == "push"){
+        if (argc == 3)
         {
-            if (argc == 3)
-            {
-                string s = "Push successful!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                push(argv[2]);
-                exit(EXIT_SUCCESS);
-            }
-            else
-            {
-                string s = "Error in push!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                exit(EXIT_SUCCESS);
-            }
+            string s = "Push successful!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            push(argv[2]);
+            exit(EXIT_SUCCESS);
         }
+        else
+        {
+            string s = "Error in push!!";
+            mygitlog::log_write(s);
+         cout << s << endl;
+            exit(EXIT_SUCCESS);
+        }
+    }
 
     else if (str == "rollback")
         {
@@ -231,6 +225,44 @@ int main(int argc, char* argv[]){
             else
             {
                 string s = "Error in retrieving version number!!";
+                mygitlog::log_write(s);
+                cout << s << endl;
+                exit(EXIT_SUCCESS);
+            }
+        }
+
+    else if (str== "retrieve_sha")
+        {
+            if (argc == 4)
+            {
+                string s = "SHA retrieved successfully!!";
+                mygitlog::log_write(s);
+                cout << s << endl;
+                retrieve_sha(argv[2],argv[3]);
+                exit(EXIT_SUCCESS);
+            }
+            else
+            {
+                string s = "Error in retrieving SHA!!";
+                mygitlog::log_write(s);
+                cout << s << endl;
+                exit(EXIT_SUCCESS);
+            }
+        }
+
+    else if (str== "retrieve_filename")
+        {
+            if (argc == 4)
+            {
+                string s = "Filename retrieved successfully!!";
+                mygitlog::log_write(s);
+                cout << s << endl;
+                retrieve_filename(argv[2],argv[3]);
+                exit(EXIT_SUCCESS);
+            }
+            else
+            {
+                string s = "Error in retrieving filename!!";
                 mygitlog::log_write(s);
                 cout << s << endl;
                 exit(EXIT_SUCCESS);
