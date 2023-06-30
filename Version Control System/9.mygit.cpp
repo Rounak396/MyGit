@@ -90,7 +90,7 @@ int main(int argc, char* argv[]){
             string s = "Commit successful!!";
             mygitlog::log_write(s);
             cout << s << endl;
-            commit(argv[2]);
+            commit();
             exit(EXIT_SUCCESS);
         }
         else
@@ -108,7 +108,7 @@ int main(int argc, char* argv[]){
             string s = "Log successful!!";
             mygitlog::log_write(s);
             cout << s << endl;
-            log();
+            mygitlog::log(s); // pass the string argument to the log function
             exit(EXIT_SUCCESS);
         }
         else
@@ -120,13 +120,14 @@ int main(int argc, char* argv[]){
         }
     }
 
+
     else if (str == "merge"){
         if (argc == 3)
         {
             string s = "Merge successful!!";
             mygitlog::log_write(s);
             cout << s << endl;
-            merge(argv[2]);
+            merge();
             exit(EXIT_SUCCESS);
         }
         else
@@ -144,7 +145,7 @@ int main(int argc, char* argv[]){
             string s = "Pull successful!!";
             mygitlog::log_write(s);
             cout << s << endl;
-            pull(argv[2]);
+            pull();
             exit(EXIT_SUCCESS);
         }
         else
@@ -162,7 +163,7 @@ int main(int argc, char* argv[]){
             string s = "Push successful!!";
             mygitlog::log_write(s);
             cout << s << endl;
-            push(argv[2]);
+            push();
             exit(EXIT_SUCCESS);
         }
         else
@@ -180,7 +181,7 @@ int main(int argc, char* argv[]){
             string s = "Rollback successful!!";
             mygitlog::log_write(s);
             cout << s << endl;
-            rollback(argv[2]);
+            rollback();
             exit(EXIT_SUCCESS);
         }
         else
