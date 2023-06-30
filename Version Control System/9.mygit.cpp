@@ -50,24 +50,21 @@ int main(int argc, char* argv[]){
     str=p;
 
     if (str == "init"){    
-            if (init())
-            {
-                string s = "Mygit successfully initialised!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                exit(EXIT_SUCCESS);
-                
-            }
-            else
-            {
-                string s = "Error in initialisation!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                exit(EXIT_SUCCESS);
-                
-                
-            }
+        if (init() == 0)
+        {
+            string s = "Mygit successfully initialised!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            exit(EXIT_SUCCESS);
         }
+        else
+        {
+            string s = "Error in initialisation!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            exit(EXIT_SUCCESS);
+        }
+    }
 
     else if (str == "add")
         {
