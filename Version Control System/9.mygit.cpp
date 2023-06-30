@@ -108,7 +108,7 @@ int main(int argc, char* argv[]){
             string s = "Log successful!!";
             mygitlog::log_write();
             cout << s << endl;
-            void mygitlog::log(string s) { // add a function that takes a string argument
+            void mygitlog::log(string s){ // add a function that takes a string argument
                 ofstream logfile;
                 logfile.open(".mygit/log.txt", ios::app);
                 time_t now = time(0);
@@ -116,6 +116,7 @@ int main(int argc, char* argv[]){
                 logfile << dt << " : " << s << endl;
                 logfile.close();
             }
+            // END: ed8c6549bwf9;
 
             // call the modified function
             mygitlog::log_write();
