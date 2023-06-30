@@ -72,7 +72,7 @@ int main(int argc, char* argv[]){
             string s = "File added successfully!!";
             mygitlog::log_write(s);
             cout << s << endl;
-            add(argv[2]);
+            add();
             exit(EXIT_SUCCESS);
         }
         else
