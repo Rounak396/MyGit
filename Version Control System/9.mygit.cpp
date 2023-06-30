@@ -27,14 +27,14 @@ using namespace std;
 
 
 using namespace std;
-using namespace mygitlog;
-using namespace mygitstatus;
 using namespace mygitadd;
 using namespace mygitCommit;
+using namespace mygitlog;
+using namespace mygitmerge;
 using namespace mygitpull;
 using namespace mygitpush;
-using namespace mygitmerge;
 using namespace mygitrollback;
+using namespace mygitstatus;
 
 
 int init();
