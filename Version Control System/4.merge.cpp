@@ -91,45 +91,42 @@ namespace mygitmerge{
             exit(1);
         }
 
-    vector<string> v;
-    while ((pointerp = readdir(dir)) != NULL)
-    {
-        
-        string file_name = pointerp->d_name;
-        string filepath = path + "/" + file_name;
-        if (file_name == "." || file_name == ".." || file_name == ".mygit" || file_name == "a.out" || file_name == ".vscode" || file_name=="mygit" || file_name=="1.add.cpp" || file_name=="2.commit.cpp" || file_name=="3.log.cpp" || file_name=="4.merge.cpp" || file_name=="5.pull.cpp" || file_name=="6.push.cpp" || file_name=="7.rollback.cpp" ||  file_name=="8.status.hpp" || file_name=="9.mygit.cpp" || file_name=="mygit" || file_name=="pull" || file_name=="push" )
-            {
+        vector<string> v;
+        while ((pointerp = readdir(dir)) != NULL)
+        {
+            
+            string file_name = pointerp->d_name;
+            string filepath = path + "/" + file_name;
+            if (file_name == "." || file_name == ".." || file_name == ".mygit" || file_name == "a.out" || file_name == ".vscode" || file_name=="mygit" || file_name=="1.add.cpp" || file_name=="2.commit.cpp" || file_name=="3.log.cpp" || file_name=="4.merge.cpp" || file_name=="5.pull.cpp" || file_name=="6.push.cpp" || file_name=="7.rollback.cpp" ||  file_name=="8.status.hpp" || file_name=="9.mygit.cpp" || file_name=="mygit" || file_name=="pull" || file_name=="push" ){
                 continue;
             }
-        else
-            {
+            else{
                 v.push_back(file_name);
             }
-    }
-    closedir(dir);
-    return v;
-
-    }
-    
-    
-
-    
-        string get_sha(string file_path){
-            string command = "sha1sum " + file_path;
-            char buffer[128];
-            string result = "";
-            FILE* pipe = popen(command.c_str(),"r");
-            if(!pipe){
-                cout << "Error in opening pipe" << endl;
-                exit(1);
-            }
-            while(!feof(pipe)){
-                if(fgets(buffer,128,pipe) != NULL){
-                    result += buffer;
-                }
-            }
-            pclose(pipe);
-            return result.substr(0,40);
         }
+        closedir(dir);
+        return v;
+    }
+    
+    
+
+    
+    string get_sha(string file_path){
+        string command = "sha1sum " + file_path;
+        char buffer[128];
+        string result = "";
+        FILE* pipe = popen(command.c_str(),"r");
+        if(!pipe){
+            cout << "Error in opening pipe" << endl;
+            exit(1);
+        }
+        while(!feof(pipe)){
+            if(fgets(buffer,128,pipe) != NULL){
+                result += buffer;
+            }
+        }
+        pclose(pipe);
+        return result.substr(0,40);
+    }
 
 }
