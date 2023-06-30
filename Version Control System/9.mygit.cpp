@@ -265,9 +265,10 @@ int main(int argc, char* argv[]){
     }
         
     else{
-        string s = "Invalid command!!";
-        mygitlog::log_write(s);
-        cout << s << endl;
-        exit(EXIT_SUCCESS);
+        cout  << str << " is not a git command. " << endl;
+        cout   << "These are common Git commands :"<<endl;
+        cout << "1.) ./mygit init \n2.) ./mygit status\n3.) ./mygit add\n4.) ./mygit commit\n5.) ./mygit log\n6.) ./mygit rollback\n7.) ./mygit pull\n8.) ./mygit push\n9.) ./mygit merge\n10.) ./mygit retrieve_version_no\n11.) ./mygit retrieve_sha filename version_no\n12.) ./mygit retrieve_filename sha version_no\n" << endl;  
     }
+
+    return 0;
 }
