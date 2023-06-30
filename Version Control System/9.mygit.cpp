@@ -174,24 +174,23 @@ int main(int argc, char* argv[]){
         }
     }
 
-    else if (str == "rollback")
+    else if (str == "rollback"){
+        if (argc == 3)
         {
-            if (argc == 3)
-            {
-                string s = "Rollback successful!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                rollback(argv[2]);
-                exit(EXIT_SUCCESS);
-            }
-            else
-            {
-                string s = "Error in rollback!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                exit(EXIT_SUCCESS);
-            }
+            string s = "Rollback successful!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            rollback(argv[2]);
+            exit(EXIT_SUCCESS);
         }
+        else
+        {
+            string s = "Error in rollback!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            exit(EXIT_SUCCESS);
+        }
+    }
 
     else if (str == "status")
         {
