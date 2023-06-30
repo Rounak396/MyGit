@@ -192,80 +192,76 @@ int main(int argc, char* argv[]){
         }
     }
 
-    else if (str == "status")
+    else if (str == "status"){
+        if (argc == 2)
         {
-            if (argc == 2)
-            {
-                string s = "Status successful!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                status();
-                exit(EXIT_SUCCESS);
-            }
-            else
-            {
-                string s = "Error in status!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                exit(EXIT_SUCCESS);
-            }
+            string s = "Status successful!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            status();
+            exit(EXIT_SUCCESS);
         }
+        else
+        {
+            string s = "Error in status!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            exit(EXIT_SUCCESS);
+        }
+    }
 
-     else if (str== "retrieve_version_no")
+    else if (str== "retrieve_version_no"){
+        if (argc == 2)
         {
-            if (argc == 2)
-            {
-                string s = "Version number retrieved successfully!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                retrieve_version_no();
-                exit(EXIT_SUCCESS);
-            }
-            else
-            {
-                string s = "Error in retrieving version number!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                exit(EXIT_SUCCESS);
-            }
+            string s = "Version number retrieved successfully!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            retrieve_version_no();
+            exit(EXIT_SUCCESS);
         }
+        else
+        {
+            string s = "Error in retrieving version number!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            exit(EXIT_SUCCESS);
+        }
+    }
 
-    else if (str== "retrieve_sha")
+    else if (str== "retrieve_sha"){
+        if (argc == 4)
         {
-            if (argc == 4)
-            {
-                string s = "SHA retrieved successfully!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                retrieve_sha(argv[2],argv[3]);
-                exit(EXIT_SUCCESS);
-            }
-            else
-            {
-                string s = "Error in retrieving SHA!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                exit(EXIT_SUCCESS);
-            }
+            string s = "SHA retrieved successfully!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            retrieve_sha(argv[2],argv[3]);
+            exit(EXIT_SUCCESS);
         }
+        else
+        {
+            string s = "Error in retrieving SHA!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            exit(EXIT_SUCCESS);
+        }
+    }
 
-    else if (str== "retrieve_filename")
+    else if (str== "retrieve_filename"){
+        if (argc == 4)
         {
-            if (argc == 4)
-            {
-                string s = "Filename retrieved successfully!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                retrieve_filename(argv[2],argv[3]);
-                exit(EXIT_SUCCESS);
-            }
-            else
-            {
-                string s = "Error in retrieving filename!!";
-                mygitlog::log_write(s);
-                cout << s << endl;
-                exit(EXIT_SUCCESS);
-            }
+            string s = "Filename retrieved successfully!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            retrieve_filename(argv[2],argv[3]);
+            exit(EXIT_SUCCESS);
         }
+        else
+        {
+            string s = "Error in retrieving filename!!";
+            mygitlog::log_write(s);
+            cout << s << endl;
+            exit(EXIT_SUCCESS);
+        }
+    }
         
 }
