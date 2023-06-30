@@ -53,7 +53,7 @@ int main(int argc, char* argv[]){
         if (init() == 0)
         {
             string s = "Mygit successfully initialised!!";
-            mygitlog::log_write(s);
+            mygitlog::log_write();
             cout << s << endl;
             exit(EXIT_SUCCESS);
         }
