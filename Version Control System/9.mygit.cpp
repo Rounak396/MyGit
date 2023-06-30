@@ -417,3 +417,83 @@ int init(){
     else
         return 0;
 };
+
+
+string retrieve_version_no()
+{   
+    //getting current working directory
+    string cwd_path = mygitstatus::get_cwd();
+    string mygit_path = cwd_path + "/.mygit/";
+
+    //reading version_no file to get current version number
+    string version_no_file_path = mygit_path + "version_no.txt";
+    fstream version_no_file(version_no_file_path, std::ios_base::in);
+    string version_no;
+    version_no_file >> version_no;
+    version_no_file.close();
+
+    return (version_no);
+}
+
+
+void retrieve_sha(string filename, string version_no)
+{   
+    //getting current working directory
+    string cwd_path = mygitstatus::get_cwd();
+    string mygit_path = cwd_path + "/.mygit/";
+    
+    string version_no_file_path = mygit_path + version_no + "/index.txt";
+    
+    map<string, string> files = mygitstatus::get_map(version_no_file_path);
+
+    string sha = "";
+    //retrieving sha of given file
+    for (auto it : files)
+    {
+        if (it.first == filename)
+        {
+            sha = it.second;
+            break;
+        }
+    }
+    if (sha == "")
+    {
+        cout << "file with given filename not found in the given version...unable to retrieve sha" << endl;
+    }
+    else
+    {
+        cout <<"sha : "<< sha << endl;
+    }
+}
+
+
+void retrieve_filename(string sha, string version_no)
+{   
+    //getting current working directory
+    string cwd_path = mygitstatus::get_cwd();
+    string mygit_path = cwd_path + "/.mygit/";
+    
+    string version_no_file_path = mygit_path + version_no + "/index.txt";
+    
+    map<string, string> files = mygitstatus::get_map(version_no_file_path);
+
+
+    string filename = "";
+    //retrieving filename of given file
+    for (auto it : files)
+    {
+        if (it.second == sha)
+        {
+            filename = it.first;
+            break;
+        }
+    }
+    if (filename == "")
+    {
+        cout << "file with given sha not found in the given version...unable to retrieve filename" << endl;
+    }
+    else
+    {
+        cout << "filename : "<< filename << endl;
+    }
+}
