@@ -412,11 +412,9 @@ int init(){
     }
     
     //if everything is done then init is successfull
-    if (createmygitdir && chdirmygit && createversion0dir && chdirversion0 && createindexversion0)
-        return 1;
-    else
-        return 0;
-};
+    if (createmygitdir && chdirmygit && createversion0dir && chdirversion0 && createindexversion0) return 1;
+    else return 0;
+}
 
 
 string retrieve_version_no()
