@@ -218,13 +218,23 @@ int main(int argc, char* argv[]){
             }
         }
 
-     else
+     else if (str== "retrieve_version_no")
         {
-            string s = "Invalid command!!";
-            mygitlog::log_write(s);
-            cout << s << endl;
-            exit(EXIT_SUCCESS);
+            if (argc == 2)
+            {
+                string s = "Version number retrieved successfully!!";
+                mygitlog::log_write(s);
+                cout << s << endl;
+                retrieve_version_no();
+                exit(EXIT_SUCCESS);
+            }
+            else
+            {
+                string s = "Error in retrieving version number!!";
+                mygitlog::log_write(s);
+                cout << s << endl;
+                exit(EXIT_SUCCESS);
+            }
         }
-
         
 }
