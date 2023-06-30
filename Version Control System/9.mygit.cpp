@@ -272,3 +272,148 @@ int main(int argc, char* argv[]){
 
     return 0;
 }
+
+
+int init(){
+    bool createmygitdir = false,chdirmygit = false,createversion0dir = false,chdirversion0 = false,createindexversion0 = false;
+    
+    //getting current version directory
+    string current_path = mygitstatus::get_cwd();
+
+
+    //create .mygit folder
+    if (mkdir(".mygit", 0777) == -1)
+    {   
+        cerr <<  strerror(errno) << endl;
+        //display error in making .git folder
+        return 0;
+    }
+    else
+    {
+        createmygitdir = true;
+        // .Mygit directory created
+    }
+
+    if (chdir(".mygit") == -1)
+    {
+        cerr <<  strerror(errno) << endl;
+        //display error in changing directory to .mygit
+        
+        return 0;
+    }
+    else
+    {
+        chdirmygit = true;
+        // Moved to .mygit directory!!;
+    }
+
+    //make version_no.txt file
+    ofstream fout;
+    fout.open("version_no.txt", ios::out);
+    if (fout)
+    {
+        string num = "0";//initially version no is 0;
+        fout << num << endl;
+    }
+    fout.close();
+
+    //make log.txt file
+    ofstream fout2;
+    fout2.open("log.txt", ios::out);
+    fout2.close();
+
+
+    if (mkdir("0", 0777) == -1)
+    {
+        cerr << strerror(errno) << endl;//display error in creating 0 version
+        return 0;
+    }
+    else
+    {
+        createversion0dir = true;
+        // 0 version folder created
+    }
+
+    if (chdir("0") == -1)
+    {
+        cerr << strerror(errno) << endl;//display error in changing to 0 version folder
+        return 0;
+    }
+    else
+    {
+        chdirversion0 = true;
+        // Moved to 0 version folder
+    }
+
+    //  create 0 version index file;
+    ofstream fout3;
+    fout3.open("index.txt");
+    createindexversion0 = true;
+    fout3.close();
+
+
+    //return to .mygit folder
+    string path = current_path + "/.mygit";
+    if (chdir(path.c_str()) == -1)
+    {
+        cerr << strerror(errno) << endl;
+        return 0;
+    }
+
+    //create a base folder
+    if (mkdir("base", 0777) == -1)
+    {
+        cerr <<  strerror(errno) << endl;//display error in creating base folder
+        return 0;
+    }
+
+    if (chdir("base") == -1)
+    {
+        cerr << strerror(errno) << endl;
+        return 0;
+    }
+
+
+    //now transfer all the file from current path to this base folder
+    vector<string> v = mygitstatus::get_files(current_path);
+    for (int i = 0; i < v.size(); i++)
+    {
+        string file = v[i];
+        string s = current_path + "/" + file;
+
+        //geting current working directory
+        string base_path = mygitstatus::get_cwd();;
+        string path = base_path + "/" + file;
+
+        //copy files from cwd_path to base
+        ifstream fin;
+        ofstream fout;
+
+        fin.open(s, ios::in);//open that file in current path to read
+        fout.open(path, ios::out);//open that file in base to write
+
+        string line;
+
+        while (fin)
+        {
+            getline(fin, line);//reading line by line
+            fout << line << endl;//writing line by line
+        }
+        fin.close();
+        fout.close();
+        //files copied from cwd to base
+    }
+
+    path = current_path + "/.mygit";//return to .mygit folder
+    if (chdir(path.c_str()) == -1)
+    {
+        cerr << strerror(errno) << endl;
+        return 0;
+    }
+    
+    //if everything is done then init is successfull
+    if (createmygitdir && chdirmygit && createversion0dir && chdirversion0 && createindexversion0)
+        return 1;
+    else
+        return 0;
+};
