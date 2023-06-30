@@ -264,4 +264,10 @@ int main(int argc, char* argv[]){
         }
     }
         
+    else{
+        string s = "Invalid command!!";
+        mygitlog::log_write(s);
+        cout << s << endl;
+        exit(EXIT_SUCCESS);
+    }
 }
