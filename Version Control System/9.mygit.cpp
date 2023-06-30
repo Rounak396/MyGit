@@ -14,7 +14,6 @@
 #include <sstream>
 #include <map>
 
-using namespace std;
 
 #include "1.add.cpp"
 #include "2.commit.cpp"
