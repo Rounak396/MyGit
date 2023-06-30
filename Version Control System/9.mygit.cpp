@@ -274,6 +274,7 @@ int main(int argc, char* argv[]){
 }
 
 
+
 int init(){
     bool createmygitdir = false,chdirmygit = false,createversion0dir = false,chdirversion0 = false,createindexversion0 = false;
     
@@ -417,6 +418,7 @@ int init(){
 }
 
 
+
 string retrieve_version_no()
 {   
     //getting current working directory
@@ -463,6 +465,7 @@ void retrieve_sha(string filename, string version_no)
         cout <<"sha : "<< sha << endl;
     }
 }
+
 
 
 void retrieve_filename(string sha, string version_no)
