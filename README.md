@@ -90,4 +90,4 @@ mygit remote add <remote-name> <remote-url>
 Use the following command to remove a remote repository:
 ```bash
 mygit remote remove <remote-name>
-```.
+```..
