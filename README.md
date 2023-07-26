@@ -1,5 +1,5 @@
 # MyGit
-MyGit is a version control system developed using C++..
+MyGit is a version control system developed using C++.
 ## Installation
 Use the following command to install MyGit:
 ```bash
