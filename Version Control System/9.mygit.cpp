@@ -15,14 +15,14 @@
 #include <map>
 
 
-#include "1.add.cpp"
-#include "2.commit.cpp"
-#include "3.log.cpp"
-#include "4.merge.cpp"
-#include "5.pull.cpp"
-#include "6.push.cpp"
-#include "7.rollback.cpp"
-#include "8.status.cpp"
+#include "1.add.hpp"
+#include "2.commit.hpp"
+#include "3.log.hpp"
+#include "4.merge.hpp"
+#include "5.pull.hpp"
+#include "6.push.hpp"
+#include "7.rollback.hpp"
+#include "8.status.hpp"
 
 
 using namespace std;

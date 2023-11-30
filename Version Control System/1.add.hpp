@@ -1,22 +1,21 @@
 namespace mygitadd{
     #include <iostream> 
-    #include <fstream> // for file I/O
-    #include <sstream> // for string streams
-    #include <string>  // for strings
-    #include <vector>  // for vectors
+    #include <fstream> 
+    #include <sstream> 
+    #include <string>  
+    #include <vector>  
     #include <dirent.h> // for directory
-    #include <sys/stat.h> // for stat
-    #include <unistd.h> // for getcwd. get current working directory
-    #include <stdio.h>  // stdio.h is the C header for the C standard library, whereas cstdio is the C++ version of the same thing.
-    #include <stdlib.h> // stdlib.h is the C header for the C standard library, whereas cstdlib is the C++ version of the same thing.
-    #include <string.h>  // for string
-    #include <sys/types.h> // types.h is a header file in the standard library of the C programming language containing definitions of important data types and macros.
-    #include <sys/wait.h> // wait.h is a header file in the C standard library for the C programming language which contains constructs that facilitate waiting for and sending signals to child processes.
-    #include <fcntl.h> // for file control
-    #include <errno.h> // for error number. errno is defined by the ISO C standard to be a modifiable lvalue of type int, and must not be explicitly declared; errno may be a macro.
-    #include <time.h> // for time
-    #include <algorithm> // for sort
-    #include <map>      // for map
+    #include <sys/stat.h> 
+    #include <unistd.h> 
+    #include <stdio.h>  
+    #include <stdlib.h> 
+    #include <sys/types.h> 
+    #include <sys/wait.h> 
+    #include <fcntl.h> 
+    #include <errno.h> 
+    #include <time.h> 
+    #include <algorithm> 
+    #include <map>      
 
     using namespace std;
 
@@ -134,7 +133,7 @@ namespace mygitadd{
             }
             fin.close();
             fout.close();
-
+            
             string sha = get_sha(filename);
             map_index[filename] = sha;//change sha of the file in map
             cout<<"adding modified file: "<<filename<<endl;
